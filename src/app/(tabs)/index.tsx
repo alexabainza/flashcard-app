@@ -1,8 +1,10 @@
+import { CarouselType, Flashcard } from "@assets/types";
 import { useRef } from "react";
+import data from "@assets/sampledata.json";
 import { Button, SafeAreaView, StyleSheet } from "react-native";
 import { Text, View, Dimensions, StatusBar } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
-import { CarouselType } from "../../assets/types";
+
 export default function TabOneScreen() {
   const width = Dimensions.get("window").width;
   const carouselRef = useRef<CarouselType | null>(null);
@@ -27,7 +29,7 @@ export default function TabOneScreen() {
           width={width}
           height={width / 2}
           // autoPlay={true}
-          data={[...new Array(6).keys()]}
+          data={data.flashcards as Flashcard[]}
           scrollAnimationDuration={1000}
           onSnapToItem={(index) => console.log("current index:", index)}
           renderItem={({ index }) => (
@@ -45,6 +47,7 @@ export default function TabOneScreen() {
       </View>
       <View style={styles.buttonContainer}>
         <Button title="Prev" color="#841584" onPress={handlePrev} />
+        <Button title="Shuffle" color="#841584" />
         <Button title="Next" color="#841584" onPress={handleNext} />
       </View>
     </SafeAreaView>
