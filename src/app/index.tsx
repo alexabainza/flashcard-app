@@ -48,14 +48,15 @@ export default function TabOneScreen() {
   };
 
   return (
-    <LinearGradient colors={["#151722", "#3A102B"]} style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#ECE7FF"]} style={styles.container}>
+      <Text style={styles.heading}>Flash Cards</Text>
       <View style={styles.separator} />
       <View style={{ flex: 1 }}>
         <Carousel
           ref={carouselRef as any}
           loop
-          width={width - 20}
-          height={width * 0.75}
+          width={width - 50}
+          height={width * 1.15}
           autoPlay={true}
           data={flashcards}
           scrollAnimationDuration={1000}
@@ -110,16 +111,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: StatusBar.currentHeight,
   },
+  heading: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#3F3D94',
+    marginBottom: 10,
+    textTransform: 'uppercase',
+    top: '6%',
+  },
   text: {
     textAlign: "center",
-    fontSize: 20,
-    color: "white",
+    fontSize: 35, 
+    color: "#3F3D94",
+    paddingHorizontal: '10%',
   },
   headerText: {
+    fontSize: 24,
     textAlign: "center",
-    paddingVertical: 10,
-    backgroundColor: "red",
+    paddingVertical: 17,
+    backgroundColor: "#3F3D94",
     color: "white",
+    // fontWeight: "bold",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
@@ -129,13 +141,14 @@ const styles = StyleSheet.create({
     color: "white",
   },
   button: {
-    width: 60,
+    width: 100,
     height: 60,
-    borderRadius: 30,
+    borderRadius: 25,
     display: "flex",
-    backgroundColor: "#443D61",
+    backgroundColor: "#3F3D94",
     justifyContent: "center",
     alignItems: "center",
+    marginHorizontal: "0.5%",
   },
 
   buttonContainer: {
@@ -185,8 +198,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     justifyContent: "center",
-    backgroundColor: "#443D61",
-    color: "white",
+    // backgroundColor: "#443D61",
+    backgroundColor: "#FFFFFF",
+    color: "white",    
+    borderColor: "#000000",
+    borderWidth: 1, 
   },
   separator: {
     marginVertical: 30,
