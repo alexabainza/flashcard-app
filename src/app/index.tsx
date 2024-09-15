@@ -1,6 +1,10 @@
-import { CarouselType, Flashcard } from "@assets/types";
+import { CarouselType, Flashcard } from "@/assets/types";
 import { useRef, useState } from "react";
-import data from "@assets/sampledata.json";
+import data from "@/assets/sampledata.json";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import { LinearGradient } from "expo-linear-gradient";
+
 import {
   ActivityIndicator,
   Button,
@@ -44,26 +48,22 @@ export default function TabOneScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient colors={["#151722", "#3A102B"]} style={styles.container}>
       <View style={styles.separator} />
       <View style={{ flex: 1 }}>
         <Carousel
           ref={carouselRef as any}
           loop
-          width={width}
-          height={width / 2}
-          // autoPlay={true}
+          width={width - 20}
+          height={width * 0.75}
+          autoPlay={true}
           data={flashcards}
           scrollAnimationDuration={1000}
           onSnapToItem={(index) => console.log("current index:", index)}
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => handleFlip(index)}
-              style={{
-                flex: 1,
-                borderWidth: 1,
-                justifyContent: "center",
-              }}
+              style={styles.card}
             >
               <Text style={styles.headerText}># {item.id}</Text>
               {flippedIndices.includes(index) ? (
@@ -80,9 +80,15 @@ export default function TabOneScreen() {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Prev" color="#841584" onPress={handlePrev} />
-        <Button title="Shuffle" color="#841584" onPress={shuffleFlashcards} />
-        <Button title="Next" color="#841584" onPress={handleNext} />
+        <TouchableOpacity onPress={handlePrev} style={styles.button}>
+          <FontAwesome name="chevron-left" size={30} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={shuffleFlashcards} style={styles.button}>
+          <FontAwesome6 name="shuffle" size={30} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleNext} style={styles.button}>
+          <FontAwesome name="chevron-right" size={30} color="white" />
+        </TouchableOpacity>
       </View>
       {isShuffling && (
         <View style={styles.overlay}>
@@ -90,33 +96,48 @@ export default function TabOneScreen() {
           <Text style={styles.loadingText}>Shuffling...</Text>
         </View>
       )}
-    </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     display: "flex",
     flex: 1,
     alignItems: "center",
+    backgroundColor: "#151722",
+    justifyContent: "center",
     paddingTop: StatusBar.currentHeight,
   },
   text: {
     textAlign: "center",
     fontSize: 20,
+    color: "white",
   },
   headerText: {
     textAlign: "center",
+    paddingVertical: 10,
+    backgroundColor: "red",
+    color: "white",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    color: "white",
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+  button: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    display: "flex",
+    backgroundColor: "#443D61",
+    justifyContent: "center",
+    alignItems: "center",
   },
+
   buttonContainer: {
     display: "flex",
     flexDirection: "row",
@@ -151,12 +172,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f9f9f9",
+    color: "white",
   },
   cardBack: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#e8e8e8",
+    color: "white",
+  },
+  card: {
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 20,
+    justifyContent: "center",
+    backgroundColor: "#443D61",
+    color: "white",
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
   },
 });
