@@ -69,11 +69,11 @@ export default function TabOneScreen() {
               <Text style={styles.headerText}># {item.id}</Text>
               {flippedIndices.includes(index) ? (
                 <View style={styles.cardBack}>
-                  <Text style={styles.text}>Answer: {item.answer}</Text>
+                  <Text style={styles.text}>{item.answer}</Text>
                 </View>
               ) : (
                 <View style={styles.cardFront}>
-                  <Text style={styles.text}>Question: {item.question}</Text>
+                  <Text style={styles.text}>{item.question}</Text>
                 </View>
               )}
             </TouchableOpacity>
