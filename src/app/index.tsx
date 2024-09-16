@@ -5,13 +5,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { LinearGradient } from "expo-linear-gradient";
 
-import {
-  ActivityIndicator,
-  Button,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { ActivityIndicator, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, View, Dimensions, StatusBar } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 
@@ -58,6 +52,7 @@ export default function TabOneScreen() {
           width={width - 50}
           height={width * 1.15}
           autoPlay={true}
+          autoPlayInterval={3000}
           data={flashcards}
           scrollAnimationDuration={1000}
           onSnapToItem={(index) => console.log("current index:", index)}
@@ -103,7 +98,7 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 10,
     display: "flex",
     flex: 1,
     alignItems: "center",
@@ -131,7 +126,6 @@ const styles = StyleSheet.create({
     paddingVertical: 17,
     backgroundColor: "#3F3D94",
     color: "white",
-    // fontWeight: "bold",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
@@ -171,16 +165,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
   },
-  flashcard: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 20,
-  },
   cardFront: {
     flex: 1,
     justifyContent: "center",
@@ -198,7 +182,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     justifyContent: "center",
-    // backgroundColor: "#443D61",
     backgroundColor: "#FFFFFF",
     color: "white",
     borderColor: "#000000",
